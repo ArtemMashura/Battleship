@@ -1,0 +1,401 @@
+﻿<Window x:Class="Battleship.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship" xmlns:local1="clr-namespace:Battleship.View.Custom" xmlns:viewmodel="clr-namespace:Battleship.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainMenuVM}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="800" MinHeight="800" MinWidth="700">
+    <StackPanel Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Visibility="{Binding Stage1}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="377*"></ColumnDefinition>
+                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="365*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right">Ширина</Label>
+                    <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding FieldWidth, Mode=TwoWay}" HorizontalAlignment="Right"></TextBox>
+
+                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">X</Label>
+
+                    <Label Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left">Высота</Label>
+                    <TextBox Grid.Column="2" Grid.Row="1" Text="{Binding FieldHeight, Mode=TwoWay}" HorizontalAlignment="Left"></TextBox>
+                </Grid>
+                <Button Command="{Binding EnterStage2}">Перейти к растановке кораблей игрока 1</Button>
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="0" Visibility="{Binding Stage2}">
+                <Label HorizontalAlignment="Center" Style="{DynamicResource ErrorMessage}"></Label>
+                <Grid HorizontalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Command="{Binding SetSelectorTo4}" Grid.Column="0" Grid.Row="0" Content="Выбрать корабль размером 4">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding SetSelectorTo3}" Grid.Column="0" Grid.Row="1" Content="Выбрать корабль размером 3">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding SetSelectorTo2}" Grid.Column="0" Grid.Row="2" Content="Выбрать корабль размером 2">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding SetSelectorTo1}" Grid.Column="0" Grid.Row="3" Content="Выбрать корабль размером 1">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                            
+                        </Button.Style>
+                    </Button>
+                    
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Blue" IsEnabled="False" Grid.Column="1" Grid.Row="0"></Button>
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Orange" IsEnabled="False" Grid.Column="1" Grid.Row="1"></Button>
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Yellow" IsEnabled="False" Grid.Column="1" Grid.Row="2"></Button>
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Green" IsEnabled="False" Grid.Column="1" Grid.Row="3"></Button>
+                    
+                    <Label Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" FontSize="16">- 4 клеточный корабль</Label>
+                    <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" FontSize="16">- 3 клеточный корабль</Label>
+                    <Label Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" FontSize="16">- 2 клеточный корабль</Label>
+                    <Label Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" FontSize="16">- 1 клеточный корабль</Label>
+
+                </Grid>
+                <ItemsControl ItemsSource="{Binding PlaningCellList}" HorizontalAlignment="Center">
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="{Binding FieldWidth}" />
+
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{DynamicResource PlaningCellStyle}"></Button>
+
+                        </DataTemplate>
+
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Command="{Binding EnterStage3}" >Перейти к растановке кораблей кораблей игрока 2</Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Visibility="{Binding Stage3}">
+                <Label HorizontalAlignment="Center" Style="{DynamicResource ErrorMessage}"></Label>
+                <Grid HorizontalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Command="{Binding SetSelectorTo4}" Grid.Column="0" Grid.Row="0" Content="Выбрать корабль размером 4">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding SetSelectorTo3}" Grid.Column="0" Grid.Row="1" Content="Выбрать корабль размером 3">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding SetSelectorTo2}" Grid.Column="0" Grid.Row="2" Content="Выбрать корабль размером 2">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+                    <Button Command="{Binding SetSelectorTo1}" Grid.Column="0" Grid.Row="3" Content="Выбрать корабль размером 1">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="4" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="3" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="2" >
+                                        <Setter Property="IsEnabled"  Value="True" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShipSelector}" Value="1" >
+                                        <Setter Property="IsEnabled"  Value="False" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+
+                        </Button.Style>
+                    </Button>
+
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Blue" IsEnabled="False" Grid.Column="1" Grid.Row="0"></Button>
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Orange" IsEnabled="False" Grid.Column="1" Grid.Row="1"></Button>
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Yellow" IsEnabled="False" Grid.Column="1" Grid.Row="2"></Button>
+                    <Button Style="{DynamicResource ExamplePlaningCellStyle}" Command="" Background="Green" IsEnabled="False" Grid.Column="1" Grid.Row="3"></Button>
+
+                    <Label Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" FontSize="16">- 4 клеточный корабль</Label>
+                    <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" FontSize="16">- 3 клеточный корабль</Label>
+                    <Label Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" FontSize="16">- 2 клеточный корабль</Label>
+                    <Label Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" FontSize="16">- 1 клеточный корабль</Label>
+
+                </Grid>
+                <ItemsControl ItemsSource="{Binding PlaningCellList1}" HorizontalAlignment="Center">
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="{Binding FieldWidth}" />
+
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{DynamicResource PlaningCellStyle}"></Button>
+
+                        </DataTemplate>
+
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Command="{Binding Finish}" >Перейти к игру</Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Visibility="{Binding IsEnabled}">
+                <Grid HorizontalAlignment="Center">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Button Style="{DynamicResource ExampleCell}" Command="" Background="DarkGray" IsEnabled="False" Grid.Column="0" Grid.Row="0"></Button>
+                    <Button Style="{DynamicResource ExampleCell}" Command="" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" IsEnabled="False" Grid.Column="0" Grid.Row="1"></Button>
+                    <Button Style="{DynamicResource ExampleCell}" Command="" Background="Red" IsEnabled="False" Grid.Column="0" Grid.Row="2"></Button>
+                    <Button Style="{DynamicResource ExampleCell}" Command="" Background="Black" IsEnabled="False" Grid.Column="0" Grid.Row="3"></Button>
+                    <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" FontSize="16">- неизведанная територия</Label>
+                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" FontSize="16">- пустая територия</Label>
+                    <Label Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16">- поврежденный корабль</Label>
+                    <Label Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" FontSize="16">- потонувший корабль</Label>
+
+                </Grid>
+                <Label Style="{DynamicResource TurnIndicator}" HorizontalAlignment="Center"></Label>
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                        <Label>Корабли игрока 1</Label>
+                        <ItemsControl ItemsSource="{Binding CellList}" Style="{DynamicResource Player1}">
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="{Binding FieldWidth}" />
+
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{DynamicResource CellStyle}"></Button>
+
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                        <Label>Корабли игрока 2</Label>
+                        <ItemsControl ItemsSource="{Binding CellList1}" Style="{DynamicResource Player2}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="{Binding FieldWidth}"/>
+
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{DynamicResource CellStyle}"></Button>
+
+                                </DataTemplate>
+
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Visibility="{Binding Win}">
+                    <Label Content="{Binding Winner}"></Label>
+                    <Label>Введите имя победителя</Label>
+                    <TextBox Text="{Binding InsertedWinner, Mode=TwoWay}"></TextBox>
+                    <Button Visibility="{Binding InsertWin}" Command="{Binding InsertingWin}">Добавить</Button>
+                </StackPanel>
+                
+            </StackPanel>
+        </Grid>
+        
+        
+
+    </StackPanel>
+</Window>
